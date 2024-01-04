@@ -52,7 +52,9 @@ void AIChat::SlotPropertiesButtonClicked()
 // Слот на клик клавиши "Отправить"
 void AIChat::SlotSendButtonClicked()
 {
-    qDebug() << "SendButtonClicked";
+    ui->textEditChat->append("Пользователь");
+    ui->textEditChat->append(ui->textEditPrompt->toPlainText());
+    ui->textEditChat->append("");
 
 //    const QUrl authUrlAuth { "https://ngw.devices.sberbank.ru:9443/api/v2/oauth" };
 //    const QString authorization { "Bearer " + Settings::GetInstance().GetGigaChatAuthorization() };
@@ -67,9 +69,9 @@ void AIChat::SlotSendButtonClicked()
 
 //    _pNetworkInterface->post(request, payload.toLocal8Bit());
 
-//    const QUrl authUrl { "https://gigachat.devices.sberbank.ru/api/v1/models" };
-    const QString token { "Bearer eyJjdHkiOiJqd3QiLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIiwiYWxnIjoiUlNBLU9BRVAtMjU2In0.bn21ptxGhtoEDa81ys13-jYr4O52m4LwMAFBdMVd5kqiAu_2ZAPLA2fEEoB9x6BJ2aSOPxly0xe3LeX6DYd-AXO6t58cgxAopW1mop6MpmLcgC048KJRyfyHiP7ney0DeS2Z06ScmVGLohc_r6EQXtFRSrTxH_8-rX3tFbcd8HJwuJsQrNEVJxRwhBJNT6RDI3t6ja2GYvW-UyizWabldtl3xNzYpKt9Nf5JpIrxd6m4C_RuF7jybhZrFD3zgw-IHNpGWTdc7boeVhU1XSo8Zptz8iD__W_Fvd51-McLIRSD6tp5XSOVQEprz34jP7ZN-12iKQM_fYqs16NeJ9Oj-Q.2ilLvXRpdMbyJWwnLtBDFQ.zPbQmpoCWJaesEibsFUaGovyCuTd5J4xyWgZvrmRtX9OpenhPy7Yr0mI45NAMvypnu-oJht5iE-ep9MReIHYmZmxon7cMZSzehNAiNOp5BR30sZ0hqwAZWnk5XZFverFB_EqEZv-I06W1Eaabv2CaUaSGdVxUM3K1ZN8TV5XW5Ee0zLB9XqVmCDgeM-_tp_O9PUMr-ZBrk3QTV30eClnbolDNSJXekKbwublPz9tQJcBSSFlmsBim9Lf4ce-xehr9fw0bdOy-og8NBjPxkrYMgY0Hkec3c0IJOfJ2DpHc7gwTE0PWcUCknQ33pdCmO1dA2ZAxyvEBlCNGVgrUlyHkjKsMRMq02ZBjrElTwShDtAdgQ5KkwuijqVpKoh2z7OdWE5m-Mkt6eJvBCokjaxF--IGvC6g25LmC4PXLNXqjpeaiTcL93T750gY4aB5Z03NEAh2I2aeEq0v3RJ-AP0wyryKFZHnu4WbnjESMUUYosxC4jk8EqB-PtwnCYo78GYxbN9G9zE23Gmw4o4DuVKAj_giNq0xsm1SnRDmmc893KDQS7k1zvRmvvr2Q3LeY7xDYeLsOwkRnh6dnFef_3g7XQpfIG0h1SgAimvpvBEd_debRAGDExrH7uXjlh_WO8lNdJ9BwHAkVOENjJb5TU0dCSokbWTFMcYJg6yXiWDod_gOjO17f1dMxlkR2RLw269am0PdAimVjRMGd4glXtpB-8BEMC5O7LkoU1Qkx6l5Rwo.EtgFzHGL9OuolsefauyOtu2aji6xVnhPHuzwxGdJegc" };
-//    QNetworkRequest requestList(authUrl);
+    const QUrl authUrlModels { QString("https://gigachat.devices.sberbank.ru/api/v1") + "/models" };
+    const QString token { "Bearer eyJjdHkiOiJqd3QiLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIiwiYWxnIjoiUlNBLU9BRVAtMjU2In0.S4sEgIZ7ii9L8dKZenYp9qaPzpCw6SUOsK38_ukYktfKSpnR-YBKqZKycWSfnO1c8YS2_RM2ldAoctxSpgxvTSTSizwp_Wt-4TJyR4yKDvwQRUCNMmB-KZx-j4XSFqkdMnxnHvhlJJlbPZu5naN7EatcQgmakABfAVHQllakyKK8pl3yTxW47DBEielfysR8trKwm4Rr6GFKZ9LKf7J8yB_NisfoCczq0UfmOYZ69f7df5EP7XdUsip--Lcy_yApZ2JnApDK0T5x8JH8PVMZy_x2yh21Ecb4yoPPahmr_kSuMC5HFbFWMJJ3BO6iP7DhKtSf_YvdEMf0ddxWlpVWWg.m1Tb4co_DG1QmW7UkfRUow.rWvVIlkwAWrWXQrI51fj3lcnM0PitkPhaSy-j7FndFU8p9C6vVt-hEVryZQS2UzV13uuQsY5lMFXY4DzuYnOLiMYPm9TqQDZfKPBHfc8wOhCLTJepjlWObuLwfDfXsIDSS6moOkipHQR_yLbg-9nHJnA7Z-QzUqnAsQ4ytWF4Vlq8neMvSwi4S-p3LYvRAVkVNvKa0_ZmLR_I0gpohKanHEhFB4pmBCZ_Vx9G_H03rgILB2bbQeolguvEM55_qXqYKGOdoRpqqb30sA6T9pAdET_zpcTot564harYLjwrO_BQJ_Si0dnsgT8OV7-_VFdJZveGZyfNJ-8sXGUUHpnCmA2ScgtB2X-bMJVGjcuMiZvDZi0Y3yNDFgmzjPFH2-LCiZumx_pMSf5dSUjDiGphpcT1DPydyz6pRBmo_O5cvsMyruDIIx0GwHzMrXKd_MqtKOqKLGDeChgdmcpyD48rXa7IqBThSl4FQS9o2BIHqtYBnnQ73aN6bkojpZJr-9P0W6vO8TzZiPzKnoEsVgS567AXWWm_xVXxB28_zub1EHUPxIdb49zR0wHDfqNGnlKNmK0-HG8kynCHkFx3w8OZmjtoDf7Y_E9Z6aeF8T9P_LGzpHhX-MQ5tM4iEkzRTRIYhAZyjghHVcYMLJXiUM5mKsDgeXfIR1bg-a9api8iYkuCi-e-pl6WzUXrw9Wof7KzIo_K6-i1XPUlgs6n28gy0sdoRxwAQyTNYza4seUXKg.W1BW0ikxOfkvwW-z8G04r1g4yT_zxy4njjDeAXC4nFQ" };
+//    QNetworkRequest requestList(authUrlModels);
 //    requestList.setRawHeader("Authorization", token.toLocal8Bit());
 
 //    _pNetworkInterface->get(requestList);
@@ -89,12 +91,12 @@ void AIChat::SlotSendButtonClicked()
     QJsonObject systemMessage
     {
         {"role", "system"},
-        {"content", "Отвечай как научный сотрудник"}
+        {"content", "Отвечай как квалифицированный автор технической документации"}
     };
     QJsonObject userMessage
     {
         {"role", "user"},
-        {"content", "Напиши 5 вариантов названий для космической станции"}
+        {"content", ui->textEditPrompt->toPlainText()}
     };
     QJsonArray messages;
     messages.append(systemMessage);
@@ -110,11 +112,15 @@ void AIChat::SlotSendButtonClicked()
     requestCompletion.setRawHeader("Authorization", token.toLocal8Bit());
 
     _pNetworkInterface->post(requestCompletion, jsonDocument.toJson(QJsonDocument::Compact));
+
+    ui->textEditPrompt->clear();
 }
 
 // Слот на окончание передачи
 void AIChat::SlotReceptionFinished(QNetworkReply* pReply)
 {
+    auto replyData = pReply->readAll();
+    ui->textEditChat->append("GigaChat");
     if (pReply->error() != QNetworkReply::NoError)
     {
         qDebug() << "ReceptionFinished error!";
@@ -123,16 +129,24 @@ void AIChat::SlotReceptionFinished(QNetworkReply* pReply)
         qDebug() << pReply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
         qDebug() << pReply->attribute(QNetworkRequest::RedirectionTargetAttribute);
         qDebug() << pReply->errorString() << pReply->error();
+
+        ui->textEditChat->append(QString(replyData));
+        qDebug() << replyData;
     }
     else
     {
-        qDebug() << "ReceptionFinished";
-        ui->textEditChat->append("ReceptionFinished");
+        QJsonDocument jsonResponse = QJsonDocument::fromJson(replyData);
+        QJsonObject jsonObject = jsonResponse.object();
+        QJsonArray jsonArray = jsonObject["choices"].toArray();
+
+        for(auto value: jsonArray)
+        {
+            QJsonObject objMessage = value.toObject();
+            QJsonObject obj = objMessage["message"].toObject();
+            ui->textEditChat->append(obj["content"].toString());
+        }
     }
 
-    auto replyData = pReply->readAll();
-    ui->textEditChat->append(QString(replyData));
-    qDebug() << replyData;
-
+    ui->textEditChat->append("");
     pReply->deleteLater();
 }
