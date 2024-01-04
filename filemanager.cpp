@@ -18,14 +18,14 @@ FileManager::FileManager(QWidget *pParent) : QTreeView(pParent)
 {
     _mainWindow = dynamic_cast<MainWindow*>(parent());
     _fileSystem = new QFileSystemModel;
-    _fileSystem->setRootPath(QDir::currentPath());
+    _fileSystem->setRootPath(QDir::homePath());     // currentPath()
     setModel(_fileSystem);
     hideColumn(1);
     hideColumn(2);
     hideColumn(3);
     setMinimumWidth(240);
     setMinimumHeight(480);
-    QModelIndex index = _fileSystem->index(QDir::currentPath());
+    QModelIndex index = _fileSystem->index(QDir::homePath());       // currentPath()
     expand(index);
     scrollTo(index);
     resizeColumnToContents(0);

@@ -211,8 +211,6 @@ MainWindow::MainWindow(QWidget *parent /* = nullptr */)
         SlotSetupLightTheme();
     else
         SlotSetupDarkTheme();
-    
-    qDebug() << Settings::GetInstance().GetGigaChatAuthorization();
 
     SlotUpdateMenus();
     _pMdiArea->setViewMode(QMdiArea::TabbedView);

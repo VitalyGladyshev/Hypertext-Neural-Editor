@@ -7,6 +7,9 @@ namespace Ui {
 class AIChat;
 }
 
+class QNetworkAccessManager;
+class QNetworkReply;
+
 /*!
  * \brief Перечисление AIModels - список моделей
  */
@@ -39,16 +42,40 @@ public:
     /// Деструктор
     ~AIChat();
 
-    // Задать текст клавиши "Настройки" для перевода
+    /*!
+     * \brief SetPropertiesButtonText Задать текст клавиши "Настройки" для перевода
+     * \param buttonText Текст надписи
+     */
     void SetPropertiesButtonText(const QString buttonText);
 
-    // Задать текст клавиши "Отправить" для перевода
+    /*!
+     * \brief SetSendButtonText Задать текст клавиши "Отправить" для перевода
+     * \param buttonText Текст надписи
+     */
     void SetSendButtonText(const QString buttonText);
+
+public slots:
+
+    /*!
+     * \brief SlotPropertiesButtonClicked Слот на клик клавиши "Настройки"
+     */
+    void SlotPropertiesButtonClicked();
+
+    /*!
+     * \brief SlotSendButtonClicked Слот на клик клавиши "Отправить"
+     */
+    void SlotSendButtonClicked();
+
+    /*!
+     * \brief SlotReceptionIsOver Слот на окончание передачи
+     */
+    void SlotReceptionFinished(QNetworkReply* );
 
 private:
     Ui::AIChat *ui;         // Указатель на пользовательский интерфейс
     AIModels _currentLLM;   // Текущая языковая модель (LLM)
     QMap<AIModels, AIModelData> _mapModelsProperties;   // Свойства LLM
+    QNetworkAccessManager* _pNetworkInterface;          // Указатель на объект сетевого интерфейса
 };
 
 #endif // AICHAT_H
