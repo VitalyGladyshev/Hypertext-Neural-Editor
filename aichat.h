@@ -26,7 +26,12 @@ enum class AIModels
  */
 struct AIModelData
 {
-    QString GetTokenPath;
+    AIModels modelType;
+    QString strModelName;
+    QString strOAuthPath;
+    QString strToken;
+    QString strBasePath;
+    double temperature;
 };
 
 /*!
@@ -54,6 +59,17 @@ public:
      */
     void SetSendButtonText(const QString buttonText);
 
+    /*!
+     * \brief GetToken Зпросить токен
+     */
+    void GetToken();
+
+    /*!
+     * \brief SetTextBoldAndColor Задать цвет текста и сделать его жирным
+     * \param color Цвет текста
+     */
+    void SetTextBoldAndColor(QColor color);
+
 public slots:
 
     /*!
@@ -71,10 +87,20 @@ public slots:
      */
     void SlotReceptionFinished(QNetworkReply* );
 
+    /*!
+     * \brief SlotGetToken Слот получения токена
+     */
+    void SlotGetToken(QNetworkReply* );
+
+    /*!
+     * \brief SlotClearPromptFormat Очистить форматирование промпта
+     */
+    void SlotClearPromptFormat();
+
 private:
     Ui::AIChat *ui;         // Указатель на пользовательский интерфейс
-    AIModels _currentLLM;   // Текущая языковая модель (LLM)
-    QMap<AIModels, AIModelData> _mapModelsProperties;   // Свойства LLM
+    QString _currentLLM;    // Текущая языковая модель (LLM)
+    QMap<QString, AIModelData*> _mapModelsProperties;   // Свойства LLM
     QNetworkAccessManager* _pNetworkInterface;          // Указатель на объект сетевого интерфейса
 };
 
